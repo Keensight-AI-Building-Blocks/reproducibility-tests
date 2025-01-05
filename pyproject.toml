@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "reproducibility-tests"
+version = "0.1.0"
+description = ""
+authors = ["ameen-91 <mohammedameen9011@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+openai = "^1.59.3"
+langchain = "^0.3.14"
+langchain-openai = "^0.2.14"
+pandas = "^2.2.3"
+tqdm = "^4.67.1"
+pyyaml = "^6.0.2"
+
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.29.5"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
