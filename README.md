@@ -34,4 +34,19 @@ max_completion_tokens: 512
 top_p: 0.9
 seed: 123
 input_file: "input_test_data.csv"
+```
+
+## Example `metadata.yaml`
+```yaml
+model: "gpt-4o-mini"
+temperature: 1.0
+max_completion_tokens: 1024
+top_p: 1.0
+seed: 42
+no_of_samples: 100
+avg_rating: 4.5
+variance: 0.25
+std_dev: 0.5
+timestamp: "20231010-123456"
+```
 
