@@ -2,8 +2,8 @@ import yaml
 import subprocess
 from tqdm import tqdm
 
-temperature_values = [0.7, 1.0, 1.3]
-top_p_values = [0.8, 1.0, 1.2]
+temperature_values = [0.0, 0.5, 1.0]
+top_p_values = [0.0, 0.5, 1.0]
 grading_prompts = ["strict", "normal", "lenient"]
 
 base_config = {

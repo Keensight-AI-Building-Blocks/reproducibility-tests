@@ -52,7 +52,6 @@ chain = prompt | llm | parser
 
 data = pd.read_csv(cfg.input_file, index_col=0)
 
-
 tqdm.pandas()
 
 timestamp = time.strftime("%Y%m%d-%H%M%S")
@@ -62,9 +61,17 @@ print("Processing data...")
 OUTPUT_DIR = f"output/{timestamp}"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-data["ratings"] = data.progress_apply(lambda x: chain.invoke(input={"comments": x["comments"], "response": x["response"]})["rating"], axis=1)
+def apply_rating(row):
+    retries = 3
+    for _ in range(retries):
+        try:
+            return chain.invoke(input={"comments": row["comments"], "response": row["response"]})["rating"]
+        except Exception as e:
+            print(f"Error: {e}. Retrying...")
+            time.sleep(1)
+    return None
 
-
+data["ratings"] = data.progress_apply(apply_rating, axis=1)
 
 print("Data processed successfully")
 
