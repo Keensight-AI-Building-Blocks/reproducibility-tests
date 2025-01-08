@@ -22,6 +22,12 @@ class CFG:
     top_p = config_data.get("top_p", 1.0)
     seed = config_data.get("seed", 42)
     input_file = config_data.get("input_file", "input_test_data.csv")
+    prompt = config_data.get("prompt", "normal")
+
+prompts_file = "judge_prompts.yaml"
+if os.path.exists(prompts_file):
+    with open(prompts_file, "r") as f:
+        prompts_data = yaml.safe_load(f)
 
 cfg = CFG()
 
@@ -36,27 +42,8 @@ class Rating(BaseModel):
 
 parser = JsonOutputParser(pydantic_object=Rating)
 
-
-
 prompt = PromptTemplate(
-    template="""
-This output is from a YouTube comment analysis pipeline, which analyzes comments on a given video. Your task is to evaluate the quality of the analysis based on the following structure provided in the response:\n
-{format_instructions}\n
-
-Response:
-strengths (List[str]): Key strengths identified in the comments.
-weaknesses (List[str]): Notable weaknesses highlighted in the comments.
-opportunities (List[str]): Potential opportunities suggested by the comments.
-suggestions (List[str]): Specific suggestions provided by the comments.
-overall_sentiment (str): A concise description of the overall sentiment expressed in the comments.
-Below are the comments for the analyzed video:
-Comments:
-{comments}
-
-Analysis Response:
-{response}
-
-Your task is to evaluate the analysis provided in the Response and grade its accuracy, clarity, and completeness.""",
+    template = f"""{prompts_data.get(cfg.prompt, prompts_data["normal"])}""",
     input_variables=["comments", "response"],
     partial_variables={"format_instructions": parser.get_format_instructions()},
 )
@@ -90,6 +77,7 @@ metadata = {
     "temperature": cfg.temperature,
     "max_completion_tokens": cfg.max_completion_tokens,
     "top_p": cfg.top_p,
+    "prompt": cfg.prompt,
     "seed": cfg.seed,
     "no_of_samples": len(data),
     "avg_rating": round(float(data["ratings"].mean()),3),

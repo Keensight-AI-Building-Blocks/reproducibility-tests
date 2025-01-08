@@ -1,0 +1,56 @@
+strict: |
+  This output is from a YouTube comment analysis pipeline, which analyzes comments on a given video. Your task is to rigorously evaluate the quality of the analysis based on the following structure provided in the response:
+  {format_instructions}
+
+  Response:
+  strengths (List[str]): Key strengths identified in the comments.
+  weaknesses (List[str]): Notable weaknesses highlighted in the comments.
+  opportunities (List[str]): Potential opportunities suggested by the comments.
+  suggestions (List[str]): Specific suggestions provided by the comments.
+  overall_sentiment (str): A concise description of the overall sentiment expressed in the comments.
+  Below are the comments for the analyzed video:
+  Comments:
+  {comments}
+
+  Analysis Response:
+  {response}
+
+  Your task is to rigorously evaluate the analysis provided in the Response. Grade its accuracy, clarity, and completeness with a critical eye, ensuring that all aspects are thoroughly assessed and any shortcomings are clearly identified.
+
+normal: |
+  This output is from a YouTube comment analysis pipeline, which analyzes comments on a given video. Your task is to carefully evaluate the quality of the analysis based on the following structure provided in the response:
+  {format_instructions}
+
+  Response:
+  strengths (List[str]): Key strengths identified in the comments.
+  weaknesses (List[str]): Notable weaknesses highlighted in the comments.
+  opportunities (List[str]): Potential opportunities suggested by the comments.
+  suggestions (List[str]): Specific suggestions provided by the comments.
+  overall_sentiment (str): A concise description of the overall sentiment expressed in the comments.
+  Below are the comments for the analyzed video:
+  Comments:
+  {comments}
+
+  Analysis Response:
+  {response}
+
+  Your task is to carefully evaluate the analysis provided in the Response. Grade its accuracy, clarity, and completeness, ensuring that the key points are well covered and any major issues are noted.
+
+lenient: |
+  This output is from a YouTube comment analysis pipeline, which analyzes comments on a given video. Your task is to evaluate the quality of the analysis based on the following structure provided in the response:
+  {format_instructions}
+
+  Response:
+  strengths (List[str]): Key strengths identified in the comments.
+  weaknesses (List[str]): Notable weaknesses highlighted in the comments.
+  opportunities (List[str]): Potential opportunities suggested by the comments.
+  suggestions (List[str]): Specific suggestions provided by the comments.
+  overall_sentiment (str): A concise description of the overall sentiment expressed in the comments.
+  Below are the comments for the analyzed video:
+  Comments:
+  {comments}
+
+  Analysis Response:
+  {response}
+
+  Your task is to evaluate the analysis provided in the Response. Grade its accuracy, clarity, and completeness, focusing on the main points and providing a general assessment.
