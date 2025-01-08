@@ -172,4 +172,4 @@ cython_debug/
 
 /notebooks
 /output
-*.csv
+input_test_data.csv
