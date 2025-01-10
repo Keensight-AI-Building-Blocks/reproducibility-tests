@@ -1,0 +1,11 @@
+model: gpt-4o-mini
+temperature: 1.0
+max_completion_tokens: 1024
+top_p: 1.0
+prompt: strict
+no_of_samples: 30
+avg_rating: 6.317
+variance: 3.577
+std_dev: 1.891
+timestamp: 20250110-025502
+total_time: 197.187

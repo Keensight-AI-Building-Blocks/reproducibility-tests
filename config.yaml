@@ -1,7 +1,6 @@
 model: gpt-4o-mini
 max_completion_tokens: 1024
-seed: 42
 input_file: input_test_data.csv
-temperature: 1.0
-top_p: 1.0
-prompt: lenient
+temperature: 0.0
+top_p: 0.0
+prompt: normal

@@ -171,5 +171,6 @@ cython_debug/
 .pypirc
 
 /notebooks
-/output
-input_test_data.csv
+/input_test_data.csv
+/output_1
+/output_2

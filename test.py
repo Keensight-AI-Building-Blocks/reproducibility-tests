@@ -20,7 +20,6 @@ class CFG:
     temperature = config_data.get("temperature", 1.0)
     max_completion_tokens = config_data.get("max_completion_tokens", 1024)
     top_p = config_data.get("top_p", 1.0)
-    seed = config_data.get("seed", 42)
     input_file = config_data.get("input_file", "input_test_data.csv")
     prompt = config_data.get("prompt", "normal")
 
@@ -33,11 +32,11 @@ cfg = CFG()
 
 API_KEY = os.environ.get("OPENAI_API_KEY")
 
-llm = ChatOpenAI(model="gpt-4o-mini", api_key=API_KEY, seed=cfg.seed, temperature=cfg.temperature, max_completion_tokens=cfg.max_completion_tokens, top_p=cfg.top_p)
+llm = ChatOpenAI(model="gpt-4o-mini", api_key=API_KEY, temperature=cfg.temperature, max_completion_tokens=cfg.max_completion_tokens, top_p=cfg.top_p)
 
 class Rating(BaseModel):
     rating: float = Field(
-        description="Rating of the response from 0-5"
+        description="Rating of the response from 0-10"
     )
 
 parser = JsonOutputParser(pydantic_object=Rating)
@@ -71,13 +70,16 @@ def apply_rating(row):
             time.sleep(1)
     return None
 
+
+start_time = time.time()
+
 data["ratings"] = data.progress_apply(apply_rating, axis=1)
 
 print("Data processed successfully")
 
 data.to_csv(os.path.join(OUTPUT_DIR,"output_test_data.csv"))
 
-print("Average rating: ", data["ratings"].mean())
+print("Average rating: ", round(data["ratings"].mean(),3))
 
 metadata = {
     "model": cfg.model,
@@ -85,12 +87,12 @@ metadata = {
     "max_completion_tokens": cfg.max_completion_tokens,
     "top_p": cfg.top_p,
     "prompt": cfg.prompt,
-    "seed": cfg.seed,
     "no_of_samples": len(data),
     "avg_rating": round(float(data["ratings"].mean()),3),
     "variance": round(float(data["ratings"].var()),3),
     "std_dev": round(float(data["ratings"].std()),3),
-    "timestamp": timestamp
+    "timestamp": timestamp,
+    "total_time": round(time.time() - start_time,3)
 }
 
 with open(os.path.join(OUTPUT_DIR, "metadata.yaml"), "w") as f:

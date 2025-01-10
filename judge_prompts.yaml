@@ -15,7 +15,7 @@ strict: |
   Analysis Response:
   {response}
 
-  Your task is to rigorously evaluate the analysis provided in the Response. Grade its accuracy, clarity, and completeness with a critical eye, ensuring that all aspects are thoroughly assessed and any shortcomings are clearly identified.
+  Your task is to rigorously evaluate the analysis provided in the Response. Grade its accuracy, clarity, and completeness with a critical eye, ensuring that all aspects are thoroughly assessed and any shortcomings are clearly identified. Pay special attention to any inconsistencies, unsupported claims, or lack of detail, and provide detailed feedback on how the analysis can be improved.
 
 normal: |
   This output is from a YouTube comment analysis pipeline, which analyzes comments on a given video. Your task is to carefully evaluate the quality of the analysis based on the following structure provided in the response:
@@ -53,4 +53,4 @@ lenient: |
   Analysis Response:
   {response}
 
-  Your task is to evaluate the analysis provided in the Response. Grade its accuracy, clarity, and completeness, focusing on the main points and providing a general assessment.
+  Your task is to evaluate the analysis provided in the Response. Grade its accuracy, clarity, and completeness, focusing on the main points and providing a general assessment. Minor issues can be overlooked if the overall analysis is reasonably sound.
